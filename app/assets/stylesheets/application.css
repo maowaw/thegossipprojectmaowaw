@@ -1,0 +1,56 @@
+
+
+/* LE CSS ECRIT ICI EST POUR TOUT LE DOC */
+
+
+h1 { 
+	color: #FFFFFF;
+	text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+	letter-spacing: -1px; 
+	line-height: 1; 
+	text-align: center;
+
+	 }
+
+
+
+h2 { 
+	color: #7c795d; 
+	font-family: 'Raleway',sans-serif; 
+	font-size: 30px; 
+	font-weight: 800; 
+	line-height: 36px; 
+	margin: 0 0 24px; 
+	text-align: center;
+	 }
+
+p { 
+	font-family: 'Inder', sans-serif; 
+	line-height: 28px; 
+	margin-bottom: 15px; 
+	color: #666;
+	 }*/
+
+body {
+  padding-top: 56px;
+}
+
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.jumbotron {
+	background-image : url('https://media.istockphoto.com/photos/happy-friends-laughing-together-picture-id969231348');
+	background-size : cover;
+  min-height: 500px;
+}

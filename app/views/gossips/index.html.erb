@@ -1,0 +1,62 @@
+<html>
+	<body>
+
+<!-- Informe qu'on est bien connecté -->
+
+		<% flash.each do |key, value| %>
+ 		<%= content_tag(:div, class: "alert alert-#{key} alert-dismissable") do %>
+		<!-- affiche la notif   -->	
+  	<%= value %>
+  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<!-- Souhaite la bienvenue à la personne connectée -->
+		
+		<% if session[:user_id] != nil %>
+		<h2 class = text-center>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>   
+		<% end %>
+ 		<% end %> 
+		<% end %>
+
+
+			<div class = "jumbotron jumbotron fluid">
+				<div class =  "container">
+					<h1 class="my-4"> Voici le super site des potins de THP <br/></h1>
+				</div>
+				<div class="card-body text-center">
+					<a class="btn btn-outline-warning" <%= link_to "Enregistrer un potin", new_gossip_path %> </div> <br/> </a>
+				</div>
+			</div>
+
+
+<div class="container">
+
+
+
+<h3><br/> Voir tous les potins </h3>
+ 
+	<div class="card-columns">
+
+		<% Gossip.all.each_with_index do |gossip| %>
+		  <div class="card text-white bg-dark mb-3">
+		    <div class="card-body">
+		      <h5 class="card-title"> <%= gossip.title %> </h5>
+
+		      <p class="card-text"> écrit par <%= gossip.user.first_name %> </p>
+		    </div>
+
+		    <div class="card-footer">
+		      <small class="text-muted"> 
+
+		      	<%= Comment.where(gossip_id: gossip.id).count || 0 %> commentaire(s) <br/>
+
+		      	<button class="btn btn-warning"><%= link_to 'Voir ce potin',gossip_path(gossip.id) %> </button> </small>
+		    </div>
+		  </div>
+
+		<% end %>
+
+	</div>
+
+</div>
+
+</body>
+</html>

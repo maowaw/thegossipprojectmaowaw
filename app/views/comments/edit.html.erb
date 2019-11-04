@@ -1,0 +1,19 @@
+<html>
+  <body>
+
+<%= form_tag url_for(action: 'update'), method: "patch" do %>
+
+
+
+  <%= label_tag 'Content' %>
+  <%= text_area_tag 'content', @comment.content %>
+  <br /> <br />
+
+
+  <%= submit_tag 'Update comment' %>
+
+<% end %>
+    <!-- ... -->
+  </body>
+
+</html>

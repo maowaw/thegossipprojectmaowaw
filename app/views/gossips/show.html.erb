@@ -1,0 +1,84 @@
+<% flash.each do |key, value| %>
+ 		<%= content_tag(:div, class: "alert alert-#{key} alert-dismissable") do %>
+		<!-- affiche la notif   -->	
+  	<%= value %>
+  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<% end %>
+		<% end %>
+
+
+<h2><br/> Bonsoooir et bienvenue sur le gossip numéro <%= params["id"] %>  <br/> </h2>
+
+<p>
+
+<div class = "container d-flex justify-content-center"">
+
+	<div class="card" style="width: 18rem;">
+
+<!-- Affichage du gossip -->		
+	  <div class="card-body bg-warning">
+	    <h3 class="card-title text-center "> <br/><%= @gossip.title %> </h3>
+	    <p class="card-text"> <br/> <br/> <%= @gossip.content %> </p>
+	  </div>
+	  
+	  <ul class="list-group list-group-flush">
+
+	    <li class="list-group-item text-right">écrit par <%= @gossip.user.first_name %></li>
+	 		<li class="list-group-item text-right">à : <%= @gossip.user.city.name %></li>
+	  	<li class="card-footer list-group-item"> <small class="text-muted">créé le : <%= @gossip.created_at%></small></li>
+	  </ul>
+	</div>
+
+</div>
+
+<div class = "container">
+<!-- Formulaire pour écrire des comments -->
+
+	<div class = "container ">
+			<div style="font-family: 'Reenie Beanie', cursive;color: white; margin-top: 5%;font-size: 2em;" >
+				<%= form_for :comment, :url=> {:controller => 'comments', :action => 'create'} do |f| %>
+				<%= f.text_area :content %>
+				<%= f.hidden_field :id , :value => @gossip.id %>
+				<%= f.submit %>
+				<% end %>
+			</div>
+	</div>
+
+<!-- Affichage des commentaires -->
+	  <ul>
+    	<% Comment.where(gossip_id: @gossip.id).reverse.each do |comment| %>
+      
+      	<p> <%= comment.user.first_name %> a écrit : <br/>
+        		<%= comment.content %> <br/>
+
+       		<div class="card-footer"> 
+       			<small class="text-muted">
+		    
+			  			<a class="badge badge-pill badge-light"<%= link_to "Editer ce comment",edit_comment_path(comment) %> </button> </a><br/>
+							<a class="badge badge-pill badge-danger" <%= link_to 'Supprimer ce commentaire', comment_path(comment), method: 'delete' %> </a><br/>
+					</div> 
+					</small>
+      	</p>
+         
+    	<%end %> 
+  	</ul>
+</div>
+
+
+<div class = "container fluid d-flex justify-content-around flex-wrap">
+<!-- Boutons de sortie/redirection -->
+
+
+	  	<a class="btn btn-warning" <%= link_to "Editer ce gossip",edit_gossip_path(@gossip.id) %> 
+			<br/>  </a> 
+
+			<a class="btn btn-warning"<%= link_to 'Fiche auteur',user_path(@gossip.user.id) %> <br/> </a> 
+	  	<a class="btn btn-warning" <%= link_to "Voir la fiche ville de l'auteur",city_path(@gossip.user.city_id) %> <br/></a>
+
+			<a class="btn btn-warning" <%= link_to 'Supprimer ce gossip', gossip_path(@gossip), method: 'delete' %> <br/></a> </div>
+
+<div class= "d-flex justify-content-center" ">
+			<a class=" btn btn-danger "	<%= link_to 'Retour maison', gossips_path %> <br/> </a> 
+</div>
+</p>
+

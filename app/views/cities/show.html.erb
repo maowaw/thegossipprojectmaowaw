@@ -1,0 +1,46 @@
+
+<h1>Bienvenue sur la fiche Villes de <%= @city.name %>  <br/> </h1>
+
+<p>
+
+	<div class="card">
+	  <img class="card-img-top" src="https://www.tierra-latina.com/wp-content/uploads/2019/01/Valparaiso_Chili_voyage_sur_mesure_Tierra_Latina_08-1.jpg" alt="Card image cap">
+	  
+	  <div class="card-body">
+	    <h5 class="card-title text-center"> Nom de la ville : <%= @city.name%> </h5>
+	    <p class="card-text text-center"> Code postal : <%= @city.zip_code %>  </p>
+	  </div>
+
+
+
+
+	<ul>
+    <% User.where(city_id: params[:id]).each do |user| %>    
+			<li>   
+        
+        <%= user.first_name %> 
+          
+          <ul> <% Gossip.where(user_id: user.id).each do |gossip| %>
+        		<li>   
+    					<%= gossip.title %>
+        		</li>
+    			<%end %> </ul>
+
+      </li>
+    <%end %>
+  </ul>
+	  
+				  
+
+
+		<div class="badge badge-pill badge-danger"> 
+				<%= link_to 'Retour maison', gossips_path %> 
+		</div>	
+
+
+	</div>
+
+
+
+
+</p>

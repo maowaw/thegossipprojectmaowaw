@@ -1,0 +1,41 @@
+
+
+<h1>Bienvenue sur la fiche utilisateur de <%= @user.first_name + " " + @user.last_name %>  <br/> </h1>
+
+<p>
+
+<div class="card">
+	<img class="card-img-top" src="https://i.kym-cdn.com/entries/icons/facebook/000/016/546/hidethepainharold.jpg" alt="Card image cap">
+	  
+	<div class="card-body">
+
+	  <h5 class="card-title text-center"><%= @user.first_name + " " + @user.last_name%></h5>
+	  <p class="card-text"> <br/> <br/> Se définit comme : <%= @user.description %>  </p>
+
+	</div>
+	  
+	<ul class="list-group list-group-flush">
+
+		<li class="list-group-item "> Age : <%= @user.age %> ans <br/></li>
+		<li class="list-group-item "> Email : <%= @user.email%> <br/></li>
+	  <li class="list-group-item "> Ville : <%= @user.city.name%>  <br/></li>
+
+	</ul>
+
+	<div class="card-body text-center">
+
+		<div class="badge badge-pill badge-danger"> 
+	  		<%= link_to 'Voir la fiche ville associée',city_path(@user.city_id) %>
+		</div>
+
+		<div class="badge badge-pill badge-danger"> 
+				<%= link_to 'Retour maison', gossips_path %> 
+		</div>	
+	</div>
+</div>
+
+</p>
+
+
+
+

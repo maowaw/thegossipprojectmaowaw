@@ -1,0 +1,23 @@
+<html>
+  <body>
+
+    <p id="danger"  role="alert" class=" alert-success" role="alert"> <%= notice %> </p>
+
+    <p> Venu pour rejoindre la communauté? Allé inscrit toi! 
+      <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+        <%= label_tag 'Email' %>
+        <%= text_field_tag 'email' %>
+        <br /> <br />
+
+        <%= label_tag 'Password' %>
+        <%= text_field_tag 'password' %>
+        <br /> <br />
+
+
+        <%= submit_tag "Créer la session" %>
+
+      <% end %>
+    </p>
+  </body>
+</html>

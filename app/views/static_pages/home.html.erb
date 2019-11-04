@@ -1,0 +1,29 @@
+<h1> Bienvenue dans le site des potins de THP <br/></h1>
+
+
+
+<h3> Une idée de potin? </h2>
+<button type="button" class="btn btn-outline-warning"> <%=link_to "Enregistrer un potin", new_gossip_path%> </button>
+
+
+<h3><br/> Voir tous les potins </h2>
+<p>  
+	<div class="card-columns">
+
+		<% Gossip.all.each_with_index do |gossip| %>
+
+		  <div class="card text-white bg-dark mb-3">
+		    <div class="card-body">
+		      <h5 class="card-title"> <%= gossip.title %> </h5>
+		      <p class="card-text"> écrit par <%= gossip.user.first_name + " " + gossip.user.last_name %> </p>
+		    </div>
+		    <div class="card-footer">
+		      <small class="text-muted"> <a href="/gossips/<%= gossip.id %>/"> Voir ce potin </a>  </small>
+		    </div>
+		  </div>
+
+		<% end %>
+
+	</div>
+
+</p>
